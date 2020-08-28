@@ -1,0 +1,35 @@
+const file = require('./file')
+const mysql = require('./mysql')
+
+
+// 中国诗词 - 对应数据库名
+const chinesePoetry = {
+  caocaoshiji: { // 曹操诗集
+    path: './caocaoshiji',
+    start: 'caocao'
+  },
+  // songci: { // 宋词作者
+  //   path: './ci',
+  //   start: 'author'
+  // },
+  // songciauthor: { // 宋词
+  //   path: './ci',
+  //   start: 'ci.song'
+  // }
+}
+
+main()
+
+async function main () {
+  for (let i of Object.keys(chinesePoetry)) {
+    let obj = await file.readdir(chinesePoetry[i], i)
+
+    for (let j of obj.files) {
+      // console.log(`${ chinesePoetry[i].path }/${ j }`)
+      let jsonList = await file.readFile(`${ chinesePoetry[i].path }/${ j }`)
+      for (let k of jsonList) {
+        await mysql.insertData(k)
+      }
+    }
+  }
+}
