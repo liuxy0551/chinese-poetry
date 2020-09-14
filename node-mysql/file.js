@@ -11,7 +11,7 @@ async function readdir (obj, name) {
         console.log('readdir error', err)
         reject(err)
       } else {
-        resolve({ name, files: data.filter(i => i.includes(obj.start)) })
+        resolve({ name, files: data.filter(i => i.includes(obj.nameStart)) })
       }
     })
   })

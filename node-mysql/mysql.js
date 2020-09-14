@@ -19,7 +19,8 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
   }
 })
 
-// 定义模型，告诉 Sequelize 如何映射数据库表
+
+// 定义模型，告诉 Sequelize 如何映射数据库表 - caocaoshiji
 const Table = sequelize.define('caocaoshiji', {
   id: {
     type: Sequelize.STRING(64),
@@ -32,6 +33,7 @@ const Table = sequelize.define('caocaoshiji', {
 }, {
   timestamps: false
 })
+
 
 // 往数据库中添加数据
 async function insertData (k) {
